@@ -61,26 +61,3 @@ Open `http://127.0.0.1:8000` in your web browser.
 
 ---
 
-## Render Deployment Guide (Free Tier)
-
-Render's free tier provides 512MB RAM. Running PyTorch locally consumes ~400MB+ RAM and will crash the web service. Follow these settings for a successful deployment:
-
-1. **Create Web Service:**
-   - Link your GitHub repository to Render.
-   - Choose **Python** as the runtime environment.
-
-2. **Configure Build & Start Commands:**
-   - **Root Directory:** `documind-ai` (if your project sits inside a subdirectory, otherwise leave blank).
-   - **Build Command:** `pip install -r requirements.txt`
-   - **Start Command:** `uvicorn app:app --host 0.0.0.0 --port $PORT`
-
-3. **Add Environment Variables (in Render Settings Dashboard):**
-   - `GROQ_API_KEY`: *(Get one from Groq Console)*
-   - `PINECONE_API_KEY`: *(Get one from Pinecone console)*
-   - `PINECONE_INDEX_NAME`: `documind-index`
-   - `HF_TOKEN`: *(Get a free read-access Token from Hugging Face Settings)*
-   - `EMBEDDING_PROVIDER`: `huggingface-api` *(Crucial: prevents Render OOM crashes by using serverless embeddings)*
-   - `GROQ_MODEL`: `llama-3.1-8b-instant`
-   - `PYTHON_VERSION`: `3.10` or higher
-
-4. **Deploy:** Render will build the packages and start the FastAPI web server. Since we serve our assets directly via FastAPI, your app will be accessible directly via the URL provided by Render!
