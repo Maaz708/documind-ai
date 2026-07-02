@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocuMind AI - PDF Chat Assistant</title>
+    <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+    <header class="app-header">
+        <h1>DocuMind AI</h1>
+        <p>Upload a PDF (max 10 pages) and chat with its content</p>
+    </header>
+
+    <main class="app-container">
+        <!-- Left Side: Upload Panel -->
+        <section class="panel upload-panel">
+            <h2>1. Document Upload</h2>
+            <form id="upload-form" class="upload-form">
+                <div class="file-dropzone" id="dropzone">
+                    <input type="file" id="file-input" accept=".pdf" required>
+                    <label for="file-input" class="file-label">
+                        <strong>Choose a PDF file</strong>
+                        <span>or drag and drop it here</span>
+                    </label>
+                    <p class="file-limit">Limit: Max 10 pages</p>
+                </div>
+                <button type="submit" id="upload-btn" class="btn primary-btn">Upload and Index</button>
+            </form>
+
+            <div id="status-container" class="status-container hidden">
+                <h3>Processing Status</h3>
+                <div id="status-text" class="status-text">Idle</div>
+                <div id="status-progress" class="progress-bar-container hidden">
+                    <div id="progress-bar" class="progress-bar"></div>
+                </div>
+            </div>
+
+            <div id="doc-info" class="doc-info hidden">
+                <h3>Active Document</h3>
+                <p><strong>Filename:</strong> <span id="info-filename">-</span></p>
+                <p><strong>Pages:</strong> <span id="info-pages">-</span></p>
+                <p><strong>Document ID:</strong> <span id="info-id">-</span></p>
+                <button id="reset-doc-btn" class="btn danger-btn">Upload New Document</button>
+            </div>
+        </section>
+
+        <!-- Right Side: Chat Panel -->
+        <section class="panel chat-panel">
+            <h2>2. Interactive Chat</h2>
+            <div id="chat-messages" class="chat-messages">
+                <div class="message system-message">
+                    Please upload a PDF document on the left to start chatting.
+                </div>
+            </div>
+
+            <form id="chat-form" class="chat-form hidden">
+                <input type="text" id="chat-input" placeholder="Ask a question about the document..." required autocomplete="off">
+                <button type="submit" class="btn primary-btn" id="send-btn">Send</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; 2026 DocuMind AI. Built with LangChain, Pinecone, and Gemini API.</p>
+    </footer>
+
+    <script src="/assets/main.js"></script>
+</body>
+</html>
